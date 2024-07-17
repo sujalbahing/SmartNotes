@@ -1,8 +1,15 @@
 from django.shortcuts import render
 from django.http import Http404  
 from .models import Notes
-from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView, UpdateView
 from .forms import NotesForm
+
+
+class NotesUpdateView(UpdateView):
+    model = Notes
+    success_url = '/notes' 
+    form_class = NotesForm
+
 class NotesCreateView(CreateView):
     model = Notes
     success_url = '/notes'  # this is the URL where the user will be redirected after a successful form submission.
